@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      #mouse {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <select>
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="opel">Opel</option>
+      <option value="audi">Audi</option>
+    </select>
+
+    <label>What should I eat?
+    <input list="snacks" name="mySnack" /></label>
+    <datalist id="snacks">
+      <option value="Orange">
+      <option value="Crackers">
+      <option value="Celery">
+      <option value="Chips">
+    </datalist>
+
+    <label>Range: 1-100<input type="range" value="0" min="0" max="100" list="number" /></label>
+    <datalist id="number">
+      <option>10</option>
+      <option>20</option>
+      <option>30</option>
+      <option>50</option>
+      <option>90</option>
+    </datalist>
+
+    <input type="date" list="days" />
+    <datalist id="days">
+      <option label="New Years Day">2016-01-01</option>
+      <option>2016-02-14</option>
+      <option label="St Patricks Day">2016-03-17</option>
+        <option label="Labor Day">2016-09-05</option>
+    </datalist>
+
+    <input type="color" value="#000000" list="color" />
+    <datalist id="color">
+      <option>#ff0000</option>
+      <option>#0000ff</option>
+      <option>#00ff00</option>
+      <option>#ffff00</option>
+      <option>#00ffff</option>
+    </datalist>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <div id="mouse"></div>
+
+    <script type="text/javascript">
+      document.addEventListener('mousemove', (event) => {
+        document.querySelector('#mouse').style.left = `${event.clientX + 5}px`
+        document.querySelector('#mouse').style.top = `${event.clientY + 5}px`
+      })
+    </script>
+  </body>
+</html>

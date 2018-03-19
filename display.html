@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style media="screen">
+      body, html {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      #damage {
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        background-color: red;
+        opacity: 0.3;
+      }
+    </style>
+  </head>
+  <body>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAAGElEQVQIW2P4DwcMDAxAfBvMAhEQMYgcACEHG8ELxtbPAAAAAElFTkSuQmCC">
+      <div id="damage"></div>
+  </body>
+  <script type="text/javascript">
+    window.setImage = function(data) {
+      document.querySelector('img').src = data
+    }
+
+    window.setDamage = function(d) {
+      const damage = JSON.parse(d)
+      document.querySelector('#damage').style.left = `${damage.x}px`
+      document.querySelector('#damage').style.top = `${damage.y}px`
+      document.querySelector('#damage').style.width = `${damage.width}px`
+      document.querySelector('#damage').style.height = `${damage.height}px`
+    }
+
+    const ipc = require('electron').ipcRenderer
+    const getButton = event => {
+      switch (event.button) {
+        case 0:
+          return 'left'
+          break
+        case 1:
+          return 'middle'
+          break
+        case 2:
+          return 'right'
+          break
+      }
+    }
+
+    window.addEventListener('mousemove', event => {
+      ipc.send('mousemove', {
+        type: 'mouseMove',
+        x: event.clientX,
+        y: event.clientY,
+        movementX: event.movementX,
+        movementY: event.movementY,
+        clickCount: event.detail,
+        button: getButton(event)
+      })
+    })
+    window.addEventListener('mouseup', event => {
+      ipc.send('mouseup', {
+        type: 'mouseUp',
+        x: event.clientX,
+        y: event.clientY,
+        clickCount: event.detail,
+        button: getButton(event)
+      })
+    })
+    window.addEventListener('mousedown', event => {
+      ipc.send('mousedown', {
+        type: 'mouseDown',
+        x: event.clientX,
+        y: event.clientY,
+        clickCount: event.detail,
+        button: getButton(event)
+      })
+    })
+    window.addEventListener('keydown', event => {
+      const keyCode = event.key.replace(/^Arrow/i, '')
+      const modifiers = []
+      if (event.shiftKey) modifiers.push('shift')
+      if (event.altKey) modifiers.push('alt')
+      if (event.ctrlKey) modifiers.push('control')
+      if (event.metaKey) modifiers.push('meta')
+
+      ipc.send('keydown', {
+        type: 'keyDown',
+        keyCode,
+        modifiers
+      })
+
+      if (event.key.length === 1) {
+        ipc.send('char', {
+          type: 'char',
+          keyCode,
+          modifiers
+        })
+      }
+    })
+    window.addEventListener('keyup', event => {
+      const keyCode = event.key.replace(/^Arrow/i, '')
+      const modifiers = []
+      if (event.shiftKey) modifiers.push('shift')
+      if (event.altKey) modifiers.push('alt')
+      if (event.ctrlKey) modifiers.push('control')
+      if (event.metaKey) modifiers.push('meta')
+      ipc.send('keyup', {
+        type: 'keyUp',
+        keyCode,
+        modifiers
+      })
+    })
+  </script>
+</html>

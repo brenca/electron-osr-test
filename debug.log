@@ -1,0 +1,6 @@
+[37680:0202/000453.740:VERBOSE1:CONSOLE(8160)] "Main._createAppUI: 106.000244140625ms", source: chrome-devtools://devtools/bundled/inspector.js (8160)
+[37680:0202/000453.741:VERBOSE1:CONSOLE(8160)] "Main._createAppUI: 106.000244140625ms", source: chrome-devtools://devtools/bundled/inspector.js (8160)
+[37680:0202/000453.885:VERBOSE1:CONSOLE(8165)] "Main._showAppUI: 63ms", source: chrome-devtools://devtools/bundled/inspector.js (8165)
+[37680:0202/000453.885:VERBOSE1:CONSOLE(8165)] "Main._showAppUI: 62ms", source: chrome-devtools://devtools/bundled/inspector.js (8165)
+[37680:0202/000454.345:VERBOSE1:CONSOLE(8166)] "Main._initializeTarget: 35ms", source: chrome-devtools://devtools/bundled/inspector.js (8166)
+[37680:0202/000454.372:VERBOSE1:CONSOLE(8166)] "Main._initializeTarget: 30ms", source: chrome-devtools://devtools/bundled/inspector.js (8166)
